@@ -92,12 +92,13 @@ NSString *const MXIdentityServerRestClientErrorDomain = @"org.matrix.sdk.MXIdent
 
 - (instancetype)initWithIdentityServer:(NSString *)identityServer
                            accessToken:(nullable NSString *)accessToken
+                  sessionConfiguration:(nullable NSURLSessionConfiguration *)sessionConfiguration
      andOnUnrecognizedCertificateBlock:(nullable MXHTTPClientOnUnrecognizedCertificate)onUnrecognizedCertBlock
 {
     self = [super init];
     if (self)
     {
-        MXHTTPClient *httpClient = [[MXHTTPClient alloc] initWithBaseURL:identityServer accessToken:accessToken andOnUnrecognizedCertificateBlock:onUnrecognizedCertBlock];
+        MXHTTPClient *httpClient = [[MXHTTPClient alloc] initWithBaseURL:identityServer accessToken:accessToken sessionConfiguration:sessionConfiguration andOnUnrecognizedCertificateBlock:onUnrecognizedCertBlock];
         // The identity server accepts parameters in form data form for some requests
         httpClient.requestParametersInJSON = NO;
 

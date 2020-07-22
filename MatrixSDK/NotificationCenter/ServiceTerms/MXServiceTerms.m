@@ -39,7 +39,7 @@ NSString *const MXServiceTermsErrorDomain = @"org.matrix.sdk.MXServiceTermsError
 
 @implementation MXServiceTerms
 
-- (instancetype)initWithBaseUrl:(NSString*)baseUrl serviceType:(MXServiceType)serviceType matrixSession:(nullable MXSession *)mxSession accessToken:(nullable NSString *)accessToken
+- (instancetype)initWithBaseUrl:(NSString*)baseUrl serviceType:(MXServiceType)serviceType matrixSession:(nullable MXSession *)mxSession accessToken:(nullable NSString *)accessToken sessionConfiguration:(nullable NSURLSessionConfiguration *)sessionConfiguration
 {
     self = [super init];
     if (self)
@@ -49,7 +49,7 @@ NSString *const MXServiceTermsErrorDomain = @"org.matrix.sdk.MXServiceTermsError
         _mxSession = mxSession;
         _accessToken = [accessToken copy];
 
-        _restClient = [[MXServiceTermsRestClient alloc] initWithBaseUrl:self.termsBaseUrl accessToken:accessToken];
+        _restClient = [[MXServiceTermsRestClient alloc] initWithBaseUrl:self.termsBaseUrl accessToken:accessToken sessionConfiguration:sessionConfiguration];
     }
     return self;
 }

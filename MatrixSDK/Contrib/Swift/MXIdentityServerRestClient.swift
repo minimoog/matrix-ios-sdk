@@ -31,8 +31,8 @@ public extension MXIdentityServerRestClient {
      
      - returns: a `MXIdentityServerRestClient` instance.
      */
-    @nonobjc convenience init(identityServer: URL, accessToken: String?, unrecognizedCertificateHandler handler: MXHTTPClientOnUnrecognizedCertificate?) {
-        self.init(__identityServer: identityServer.absoluteString, accessToken: accessToken, andOnUnrecognizedCertificateBlock: handler)
+    @nonobjc convenience init(identityServer: URL, accessToken: String?, sessionConfiguration:URLSessionConfiguration, unrecognizedCertificateHandler handler: MXHTTPClientOnUnrecognizedCertificate?) {
+        self.init(__identityServer: identityServer.absoluteString, accessToken: accessToken, sessionConfiguration: sessionConfiguration, andOnUnrecognizedCertificateBlock: handler)
     }
     
     

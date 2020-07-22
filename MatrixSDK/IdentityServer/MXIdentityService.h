@@ -76,7 +76,7 @@ extern NSString *const MXIdentityServiceNotificationAccessTokenKey;
  
  @return a MXIdentityService instance.
  */
-- (instancetype)initWithIdentityServer:(NSString *)identityServer accessToken:(nullable NSString*)accessToken andHomeserverRestClient:(MXRestClient*)homeserverRestClient NS_REFINED_FOR_SWIFT;
+- (instancetype)initWithIdentityServer:(NSString *)identityServer accessToken:(nullable NSString*)accessToken sessionConfiguration:(nullable NSURLSessionConfiguration *)sessionConfiguration andHomeserverRestClient:(MXRestClient*)homeserverRestClient NS_REFINED_FOR_SWIFT;
 
 /**
  Create an instance based on identity server URL.

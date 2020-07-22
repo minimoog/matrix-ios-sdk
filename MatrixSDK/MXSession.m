@@ -208,7 +208,7 @@ typedef void (^MXOnResumeDone)(void);
         directRoomsOperationsQueue = [NSMutableArray array];
         publicisedGroupsByUserId = [[NSMutableDictionary alloc] init];
 
-        [self setIdentityServer:mxRestClient.identityServer andAccessToken:mxRestClient.credentials.identityServerAccessToken];
+        [self setIdentityServer:mxRestClient.identityServer andAccessToken:mxRestClient.credentials.identityServerAccessToken sessionConfiguration:mxRestClient.credentials.sessionConfiguration];
         
         firstSyncDone = NO;
 
@@ -404,7 +404,7 @@ typedef void (^MXOnResumeDone)(void);
     }];
 }
 
-- (void)setIdentityServer:(NSString *)identityServer andAccessToken:(NSString *)accessToken
+- (void)setIdentityServer:(NSString *)identityServer andAccessToken:(NSString *)accessToken sessionConfiguration:(nullable NSURLSessionConfiguration *)sessionConfiguration
 {
     NSLog(@"[MXSession] setIdentityServer: %@", identityServer);
     
@@ -412,7 +412,7 @@ typedef void (^MXOnResumeDone)(void);
 
     if (identityServer)
     {
-        _identityService = [[MXIdentityService alloc] initWithIdentityServer:identityServer accessToken:accessToken andHomeserverRestClient:matrixRestClient];
+        _identityService = [[MXIdentityService alloc] initWithIdentityServer:identityServer accessToken:accessToken sessionConfiguration:sessionConfiguration andHomeserverRestClient:matrixRestClient];
     }
     else
     {
@@ -1512,7 +1512,7 @@ typedef void (^MXOnResumeDone)(void);
                     NSLog(@"[MXSession] handleAccountData: Update identity server: %@ -> %@", self.identityService.identityServer, identityServer);
 
                     // Use the IS from the account data
-                    [self setIdentityServer:identityServer andAccessToken:nil];
+                    [self setIdentityServer:identityServer andAccessToken:nil sessionConfiguration:nil];
                 }
 
                 [[NSNotificationCenter defaultCenter] postNotificationName:kMXSessionAccountDataDidChangeIdentityServerNotification
@@ -3492,7 +3492,7 @@ typedef void (^MXOnResumeDone)(void);
     if (identityServer)
     {
         // Does the URL point to a true IS
-        __block MXIdentityService *identityService = [[MXIdentityService alloc] initWithIdentityServer:identityServer accessToken:nil andHomeserverRestClient:matrixRestClient];
+        __block MXIdentityService *identityService = [[MXIdentityService alloc] initWithIdentityServer:identityServer accessToken:nil sessionConfiguration:nil andHomeserverRestClient:matrixRestClient];
 
         operation = [identityService pingIdentityServer:^{
             identityService = nil;

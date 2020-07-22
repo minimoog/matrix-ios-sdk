@@ -99,7 +99,10 @@ NS_ERROR_ENUM(MXIdentityServerRestClientErrorDomain)
  @param onUnrecognizedCertBlock the block called to handle unrecognized certificate (nil if unrecognized certificates are ignored).
  @return a MXIdentityServerRestClient instance.
 */
-- (instancetype)initWithIdentityServer:(NSString *)identityServer accessToken:(nullable NSString*)accessToken andOnUnrecognizedCertificateBlock:(nullable MXHTTPClientOnUnrecognizedCertificate)onUnrecognizedCertBlock NS_REFINED_FOR_SWIFT;
+- (instancetype)initWithIdentityServer:(NSString *)identityServer
+                           accessToken:(nullable NSString*)accessToken
+                  sessionConfiguration:(nullable NSURLSessionConfiguration *)sessionConfiguration
+     andOnUnrecognizedCertificateBlock:(nullable MXHTTPClientOnUnrecognizedCertificate)onUnrecognizedCertBlock NS_REFINED_FOR_SWIFT;
 
 
 #pragma mark -

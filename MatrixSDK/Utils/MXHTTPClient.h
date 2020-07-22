@@ -151,7 +151,10 @@ typedef NS_ENUM(NSUInteger, MXHTTPClientSSLPinningMode) {
  @param onUnrecognizedCertBlock the block called to handle unrecognized certificate (nil if unrecognized certificates are ignored).
  @return a MXHTTPClient instance.
  */
-- (id)initWithBaseURL:(NSString*)baseURL accessToken:(NSString*)accessToken andOnUnrecognizedCertificateBlock:(MXHTTPClientOnUnrecognizedCertificate)onUnrecognizedCertBlock;
+- (id)initWithBaseURL:(NSString*)baseURL
+          accessToken:(NSString*)accessToken
+ sessionConfiguration:(NSURLSessionConfiguration*)sessionConfiguration
+andOnUnrecognizedCertificateBlock:(MXHTTPClientOnUnrecognizedCertificate)onUnrecognizedCertBlock;
 
 /**
  Make a HTTP request to the server.

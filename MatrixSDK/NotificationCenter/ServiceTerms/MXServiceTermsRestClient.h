@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MXServiceTermsRestClient : NSObject
 
-- (instancetype)initWithBaseUrl:(NSString*)baseUrl accessToken:(nullable NSString *)accessToken;
+- (instancetype)initWithBaseUrl:(NSString*)baseUrl accessToken:(nullable NSString *)accessToken sessionConfiguration:(nullable NSURLSessionConfiguration *)sessionConfiguration;
 
 /**
  Get all terms of the service.

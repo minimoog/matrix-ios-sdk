@@ -127,6 +127,7 @@ MXAuthAction;
         {
             httpClient = [[MXHTTPClient alloc] initWithBaseURL:credentials.homeServer
                                                    accessToken:credentials.accessToken
+                                          sessionConfiguration:credentials.sessionConfiguration
                              andOnUnrecognizedCertificateBlock:^BOOL(NSData *certificate)
                           {
 

@@ -672,7 +672,9 @@ typedef void (^MXOnBackgroundSyncFail)(NSError *error);
  @param identityServer the new identityServer. Nil for no IS
  @param accessToken the access token of the IS. Can be nil.
  */
-- (void)setIdentityServer:(NSString*)identityServer andAccessToken:(NSString*)accessToken;
+- (void)setIdentityServer:(NSString*)identityServer
+           andAccessToken:(NSString*)accessToken
+     sessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration;
 
 /**
  An array of event types for which read receipts are sent.

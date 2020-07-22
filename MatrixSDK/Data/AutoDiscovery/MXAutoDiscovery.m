@@ -132,7 +132,7 @@
     restClient = [[MXRestClient alloc] initWithHomeServer:wellKnown.homeServer.baseUrl andOnUnrecognizedCertificateBlock:nil];
     restClient.identityServer = identityServer;
     
-    self.identityService = [[MXIdentityService alloc] initWithIdentityServer:identityServer accessToken:nil andHomeserverRestClient:restClient];
+    self.identityService = [[MXIdentityService alloc] initWithIdentityServer:identityServer accessToken:nil sessionConfiguration:nil andHomeserverRestClient:restClient];
 
     // Ping one CS API to check the HS
     MXHTTPOperation *operation;

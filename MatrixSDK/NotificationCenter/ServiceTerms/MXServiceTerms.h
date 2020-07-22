@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MXServiceTerms : NSObject
 
-- (instancetype)initWithBaseUrl:(NSString*)baseUrl serviceType:(MXServiceType)serviceType matrixSession:(nullable MXSession *)mxSession accessToken:(nullable NSString *)accessToken;
+- (instancetype)initWithBaseUrl:(NSString*)baseUrl serviceType:(MXServiceType)serviceType matrixSession:(nullable MXSession *)mxSession accessToken:(nullable NSString *)accessToken sessionConfiguration:(nullable NSURLSessionConfiguration *)sessionConfiguration;
 
 @property (nonatomic, readonly) NSString *baseUrl;
 @property (nonatomic, readonly) MXServiceType serviceType;

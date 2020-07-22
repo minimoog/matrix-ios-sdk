@@ -20,7 +20,10 @@
 
 @implementation MXCredentials
 
-- (instancetype)initWithHomeServer:(NSString *)homeServer userId:(NSString *)userId accessToken:(NSString *)accessToken
+- (instancetype)initWithHomeServer:(NSString *)homeServer
+                            userId:(NSString *)userId
+                       accessToken:(NSString *)accessToken
+              sessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration
 {
     self = [super init];
     if (self)
@@ -28,6 +31,7 @@
         _homeServer = [homeServer copy];
         _userId = [userId copy];
         _accessToken = [accessToken copy];
+        _sessionConfiguration = [sessionConfiguration copy];
     }
     return self;
 }

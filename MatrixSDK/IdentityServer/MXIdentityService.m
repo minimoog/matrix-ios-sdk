@@ -72,9 +72,9 @@ NSString *const MXIdentityServiceNotificationAccessTokenKey = @"accessToken";
 
 #pragma mark - Setup
 
-- (instancetype)initWithIdentityServer:(NSString *)identityServer accessToken:(nullable NSString*)accessToken andHomeserverRestClient:(MXRestClient*)homeserverRestClient
+- (instancetype)initWithIdentityServer:(NSString *)identityServer accessToken:(nullable NSString*)accessToken sessionConfiguration:(nullable NSURLSessionConfiguration *)sessionConfiguration andHomeserverRestClient:(MXRestClient*)homeserverRestClient
 {
-    MXIdentityServerRestClient *identityServerRestClient = [[MXIdentityServerRestClient alloc] initWithIdentityServer:identityServer accessToken:accessToken andOnUnrecognizedCertificateBlock:nil];
+    MXIdentityServerRestClient *identityServerRestClient = [[MXIdentityServerRestClient alloc] initWithIdentityServer:identityServer accessToken:accessToken sessionConfiguration:sessionConfiguration andOnUnrecognizedCertificateBlock:nil];
 
     self = [self initWithIdentityServerRestClient:identityServerRestClient andHomeserverRestClient:homeserverRestClient];
     if (self)

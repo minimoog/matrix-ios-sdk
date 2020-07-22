@@ -26,12 +26,14 @@
 
 @implementation MXServiceTermsRestClient
 
-- (instancetype)initWithBaseUrl:(NSString*)baseUrl accessToken:(nullable NSString *)accessToken
+- (instancetype)initWithBaseUrl:(NSString*)baseUrl
+                    accessToken:(nullable NSString *)accessToken
+           sessionConfiguration:(nullable NSURLSessionConfiguration*)sessionConfiguration
 {
     self = [super init];
     if (self)
     {
-        _httpClient = [[MXHTTPClient alloc] initWithBaseURL:baseUrl accessToken:accessToken andOnUnrecognizedCertificateBlock:nil];
+        _httpClient = [[MXHTTPClient alloc] initWithBaseURL:baseUrl accessToken:accessToken sessionConfiguration:sessionConfiguration andOnUnrecognizedCertificateBlock:nil];
     }
     return self;
 }

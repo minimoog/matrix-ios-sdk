@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, nullable) NSData *ignoredCertificate;
 
-
+@property (nonatomic, nullable) NSURLSessionConfiguration  *sessionConfiguration;
 /**
  Simple MXCredentials construtor
 
@@ -82,7 +82,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithHomeServer:(NSString*)homeServer
                             userId:(nullable NSString*)userId
-                       accessToken:(nullable NSString*)accessToken;
+                       accessToken:(nullable NSString*)accessToken
+              sessionConfiguration:(nullable NSURLSessionConfiguration*)sessionConfiguration;
 
 /**
  Create credentials from a login or register response.

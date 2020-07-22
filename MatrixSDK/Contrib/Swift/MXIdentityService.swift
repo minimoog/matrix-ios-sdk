@@ -30,8 +30,8 @@ public extension MXIdentityService {
      
      - returns: a `MXIdentityService` instance.
      */
-    @nonobjc convenience init(identityServer: URL, accessToken: String?, homeserverRestClient: MXRestClient) {
-        self.init(__identityServer: identityServer.absoluteString, accessToken: accessToken, andHomeserverRestClient: homeserverRestClient)
+    @nonobjc convenience init(identityServer: URL, accessToken: String?, sessionConfiguration: URLSessionConfiguration?, homeserverRestClient: MXRestClient) {
+        self.init(__identityServer: identityServer.absoluteString, accessToken: accessToken, sessionConfiguration: sessionConfiguration, andHomeserverRestClient: homeserverRestClient)
     }
 
 

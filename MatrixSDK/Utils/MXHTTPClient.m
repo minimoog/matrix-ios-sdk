@@ -109,15 +109,18 @@ static NSUInteger requestCount = 0;
 #pragma mark - Public methods
 -(id)initWithBaseURL:(NSString *)baseURL andOnUnrecognizedCertificateBlock:(MXHTTPClientOnUnrecognizedCertificate)onUnrecognizedCertBlock
 {
-    return [self initWithBaseURL:baseURL accessToken:nil andOnUnrecognizedCertificateBlock:onUnrecognizedCertBlock];
+    return [self initWithBaseURL:baseURL accessToken:nil sessionConfiguration:nil andOnUnrecognizedCertificateBlock:onUnrecognizedCertBlock];
 }
 
--(id)initWithBaseURL:(NSString *)baseURL accessToken:(NSString *)accessToken andOnUnrecognizedCertificateBlock:(MXHTTPClientOnUnrecognizedCertificate)onUnrecognizedCertBlock
+-(id)initWithBaseURL:(NSString *)baseURL
+         accessToken:(NSString *)accessToken
+sessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration
+andOnUnrecognizedCertificateBlock:(MXHTTPClientOnUnrecognizedCertificate)onUnrecognizedCertBlock
 {
     self = [super init];
     if (self)
     {
-        httpManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseURL]];
+        httpManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseURL] sessionConfiguration:sessionConfiguration];
 
         [self setDefaultSecurityPolicy];
 
