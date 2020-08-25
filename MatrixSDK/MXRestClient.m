@@ -1155,6 +1155,63 @@ MXAuthAction;
                                  }];
 }
 
+- (MXHTTPOperation*)setPusherWithPushkey:(NSString *)pushkey
+                                    kind:(NSObject *)kind
+                                   appId:(NSString *)appId
+                          appDisplayName:(NSString *)appDisplayName
+                       deviceDisplayName:(NSString *)deviceDisplayName
+                              profileTag:(NSString *)profileTag
+                                    lang:(NSString *)lang
+                                    data:(NSDictionary *)data
+                                 headers:(NSDictionary*)headers
+                                  append:(BOOL)append
+                                 success:(void (^)(void))success
+                                 failure:(void (^)(NSError *))failure
+{
+    // sanity check
+    if (!pushkey || !kind || !appDisplayName || !deviceDisplayName || !profileTag || !lang || !data)
+    {
+        NSError *error = [NSError errorWithDomain:kMXRestClientErrorDomain code:MXRestClientErrorInvalidParameters userInfo:nil];
+
+        NSLog(@"[MXRestClient] setPusherWithPushkey: Error: Invalid params: ");
+
+        [self dispatchFailure:error inBlock:failure];
+        return nil;
+    }
+
+    // Fill the request parameters on demand
+    // Caution: parameters are JSON serialized in http body, we must use a NSNumber created with a boolean for append value.
+    NSDictionary *parameters = @{
+                                 @"pushkey": pushkey,
+                                 @"kind": kind,
+                                 @"app_id": appId,
+                                 @"app_display_name": appDisplayName,
+                                 @"device_display_name": deviceDisplayName,
+                                 @"profile_tag": profileTag,
+                                 @"lang": lang,
+                                 @"data": data,
+                                 @"append":[NSNumber numberWithBool:append]
+                                 };
+
+    MXWeakify(self);
+    return [httpClient requestWithMethod:@"POST"
+                                    path:[NSString stringWithFormat:@"%@/pushers/set", apiPathPrefix]
+                              parameters:parameters
+                                    data:nil
+                                 headers:headers
+                                 timeout:0
+                          uploadProgress:nil
+                                 success:^(NSDictionary *JSONResponse) {
+                                     MXStrongifyAndReturnIfNil(self);
+                                     [self dispatchSuccess:success];
+                                 }
+                                 failure:^(NSError *error) {
+                                     MXStrongifyAndReturnIfNil(self);
+                                     [self dispatchFailure:error inBlock:failure];
+                                 }];
+}
+
+
 - (MXHTTPOperation*)pushers:(void (^)(NSArray<MXPusher *> *pushers))success
                     failure:(void (^)(NSError *))failure
 {
