@@ -654,6 +654,19 @@ typedef MXHTTPOperation* (^MXRestClientIdentityServerAccessTokenHandler)(void (^
                                  failure:(void (^)(NSError *error))failure NS_REFINED_FOR_SWIFT;
 
 
+- (MXHTTPOperation*)setPusherWithPushkey:(NSString *)pushkey
+                                    kind:(NSObject *)kind
+                                   appId:(NSString *)appId
+                          appDisplayName:(NSString *)appDisplayName
+                       deviceDisplayName:(NSString *)deviceDisplayName
+                              profileTag:(NSString *)profileTag
+                                    lang:(NSString *)lang
+                                    data:(NSDictionary *)data
+                                 headers:(NSDictionary*)headers
+                                  append:(BOOL)append
+                                 success:(void (^)(void))success
+                                 failure:(void (^)(NSError *))failure NS_REFINED_FOR_SWIFT;
+
 /**
  Gets all currently active pushers for the authenticated user.
 
